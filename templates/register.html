@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div style="padding: 10px; margin: 10px 0; border-radius: 5px; color: white;
+      {% if category == 'success' %} background: green; 
+      {% elif category == 'danger' %} background: red; 
+      {% elif category == 'warning' %} background: orange; 
+      {% elif category == 'info' %} background: blue; {% endif %}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+    <h2>Register</h2>
+    
+    
+    <form method="post">
+        Username: <input type="text" name="username" required><br><br>
+        Password: <input type="password" name="password" required><br><br>
+        <button type="submit" style="color: rgb(9, 131, 35);">Register</button>
+    </form>
+    <a href="{{ url_for('login') }}">Already have an account? Login</a>
+</body>
+</html>

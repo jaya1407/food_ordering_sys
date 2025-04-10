@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div style="padding: 10px; margin: 10px 0; border-radius: 5px; color: white;
+        {% if category == 'success' %} background: green; 
+        {% elif category == 'danger' %} background: red; 
+        {% elif category == 'warning' %} background: orange; 
+        {% elif category == 'info' %} background: blue; {% endif %}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+    <h2>Your Orders</h2>
+    <table border="1">
+        <tr><th>ID</th><th>Food Item</th><th>Quantity</th><th>Total Price</th></tr>
+        {% for order in orders %}
+        <tr>
+            <td>{{ order[0] }}</td>
+            <td>{{ order[2] }}</td>
+            <td>{{ order[3] }}</td>
+            <td>${{ order[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
